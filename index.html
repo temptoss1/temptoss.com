@@ -2,20 +2,70 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>temptoss | Everything is Temporary</title>
     <style>
-        body { background-color: #121212; color: #ffffff; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; font-family: 'Inter', sans-serif; overflow: hidden; }
+        /* 네 취향에 맞춘 딥 블랙 & 미니멀 디자인 */
+        body { 
+            background-color: #000000; 
+            color: #ffffff; 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            height: 100vh; 
+            margin: 0; 
+            font-family: 'Pretendard', -apple-system, sans-serif; 
+            overflow: hidden; 
+        }
         .container { text-align: center; }
-        h1 { font-size: 3rem; font-weight: 200; letter-spacing: 0.5rem; margin-bottom: 1rem; text-transform: uppercase; }
-        p { font-size: 1rem; color: #888; letter-spacing: 0.1rem; }
-        .line { width: 40px; height: 1px; background-color: #444; margin: 2rem auto; }
+        
+        /* 현재 접속한 도메인이 표시될 스타일 */
+        #domain-display {
+            font-size: 0.9rem;
+            color: #555;
+            letter-spacing: 0.2rem;
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+        }
+
+        h1 { 
+            font-size: 2.5rem; 
+            font-weight: 200; 
+            letter-spacing: 0.6rem; 
+            margin: 0;
+            text-transform: uppercase;
+        }
+
+        .line { 
+            width: 30px; 
+            height: 1px; 
+            background-color: #333; 
+            margin: 2.5rem auto; 
+        }
+
+        p { 
+            font-size: 1rem; 
+            color: #888; 
+            letter-spacing: 0.05rem;
+            line-height: 1.6;
+        }
     </style>
 </head>
 <body>
     <div class="container">
+        <div id="domain-display"></div>
+        
         <h1>temptoss</h1>
+        
         <div class="line"></div>
-        <p>Everything is temporary. I'm just tossing an idea.</p>
+        
+        <p>Everything is temporary.<br>I'm just tossing an idea.</p>
     </div>
+
+    <script>
+        // 현재 브라우저의 호스트 네임(도메인)을 가져와서 뿌려주는 코드
+        const currentDomain = window.location.hostname;
+        document.getElementById('domain-display').innerText = currentDomain;
+    </script>
 </body>
 </html>
