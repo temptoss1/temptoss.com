@@ -5,10 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>temptoss | Everything is Temporary</title>
     <style>
-        /* 네 취향에 맞춘 딥 블랙 & 미니멀 디자인 */
+        /* 네 요청에 맞춘 클린 화이트 & 미니멀 디자인 */
         body { 
-            background-color: #000000; 
-            color: #ffffff; 
+            background-color: #ffffff; /* 순백색 배경 */
+            color: #111111; /* 깊은 검은색 글씨 */
             display: flex; 
             justify-content: center; 
             align-items: center; 
@@ -19,41 +19,45 @@
         }
         .container { text-align: center; }
         
-        /* 현재 접속한 도메인이 표시될 스타일 */
-        #domain-display {
-            font-size: 0.9rem;
-            color: #555;
+        /* IP 주소가 표시될 스타일: 은은한 그레이로 배치 */
+        #ip-display {
+            font-size: 0.8rem;
+            color: #999; /* 밝은 회색으로 튀지 않게 배치 */
             letter-spacing: 0.2rem;
-            text-transform: uppercase;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.8rem;
+            font-family: 'Courier New', monospace; /* 기계적인 느낌의 폰트 */
+            text-transform: uppercase; /* 대문자로 표시 */
         }
 
         h1 { 
-            font-size: 2.5rem; 
-            font-weight: 200; 
-            letter-spacing: 0.6rem; 
+            font-size: 3.2rem; /* 글씨 크기를 조금 더 키워서 임팩트 부여 */
+            font-weight: 200; /* 아주 얇은 폰트 두께로 고급스러움 강조 */
+            letter-spacing: 1rem; /* 글자 간격을 넓혀 사색적 여백 확보 */
             margin: 0;
             text-transform: uppercase;
+            text-indent: 1rem; /* 중앙 정렬 보정 */
+            color: #000000; /* 순검은색 */
         }
 
         .line { 
             width: 30px; 
             height: 1px; 
-            background-color: #333; 
-            margin: 2.5rem auto; 
+            background-color: #eee; /* 아주 밝은 회색 선 */
+            margin: 3rem auto; 
         }
 
         p { 
-            font-size: 1rem; 
-            color: #888; 
+            font-size: 1.15rem; 
+            color: #666; /* 중간 회색으로 가독성 확보 */
             letter-spacing: 0.05rem;
-            line-height: 1.6;
+            line-height: 1.8;
+            font-weight: 300;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <div id="domain-display"></div>
+        <div id="ip-display">FETCHING IP...</div>
         
         <h1>temptoss</h1>
         
@@ -63,9 +67,18 @@
     </div>
 
     <script>
-        // 현재 브라우저의 호스트 네임(도메인)을 가져와서 뿌려주는 코드
-        const currentDomain = window.location.hostname;
-        document.getElementById('domain-display').innerText = currentDomain;
+        // 외부 API(ipify)를 사용해 방문자의 실제 IP를 가져오는 로직
+        fetch('https://api.ipify.org?format=json')
+            .then(response => response.json())
+            .then(data => {
+                // 가져온 IP를 화면에 뿌려줌
+                document.getElementById('ip-display').innerText = "VISITOR IP: " + data.ip;
+            })
+            .catch(error => {
+                // 에러 발생 시 도메인 주소라도 보여줌
+                document.getElementById('ip-display').innerText = window.location.hostname.toUpperCase();
+                console.error('IP Fetch Error:', error);
+            });
     </script>
 </body>
 </html>
